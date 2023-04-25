@@ -32,6 +32,10 @@ impl InterfaceInner {
         #[cfg(not(feature = "socket-raw"))]
         let handled_by_raw_socket = false;
 
+        if handled_by_raw_socket {
+            return None;
+        }
+        
         self.process_nxt_hdr(
             sockets,
             ipv6_repr,
